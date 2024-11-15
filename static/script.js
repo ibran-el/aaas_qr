@@ -34,7 +34,7 @@
 
 
                 // Construct the redirect URL
-                const redirectUrl = `http://127.0.0.1:5000/mark_attendance/${admissionNo}?rollcall_for=${rollcall_for}`;
+                const redirectUrl = `https://aaas-qr.onrender.com/mark_attendance/${admissionNo}?rollcall_for=${rollcall_for}`;
                 
 
                 // Redirect to the new URL
