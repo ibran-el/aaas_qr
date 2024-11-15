@@ -3,12 +3,16 @@ import sqlite3
 from schema_003 import init_db, db
 from datetime import datetime
 import pdfkit
+import os
+
+# Install wkhtmltopdf on Debian-based systems
+os.system("apt-get update && apt-get install -y wkhtmltopdf")
 
 app = Flask(__name__)
 
 
 # Configure PDFKit to use wkhtmltopdf installed on Windows
-PDFKIT_CONFIG = pdfkit.configuration(wkhtmltopdf=r'C:\Program Files\wkhtmltopdf\bin\wkhtmltopdf.exe')
+PDFKIT_CONFIG = pdfkit.configuration(wkhtmltopdf=r'/usr/bin/wkhtmltopdf')
 
 
 # Home route to display attendance form
