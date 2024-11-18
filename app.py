@@ -84,7 +84,7 @@ def mark_attendance(admission_no):
     cursor.execute('''
         INSERT INTO Attendance (student_id, attendance_date, rollcall_for) 
         VALUES (?, ?, ?);
-    ''', (student_id,'2024-11-14', roll))
+    ''', (student_id, attendance_date, roll))
     
     conn.commit()
     conn.close
