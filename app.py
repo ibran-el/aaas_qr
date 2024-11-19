@@ -7,6 +7,7 @@ import os
 
 # Install wkhtmltopdf on Debian-based systems
 os.system("apt-get update && apt-get install -y wkhtmltopdf")
+init_db()
 
 app = Flask(__name__)
 app.config['SERVER_NAME'] = 'aaas-qr.onrender.com'
@@ -192,9 +193,3 @@ def view_records_pdf():
     response.headers['Content-Type'] = 'application/pdf'
     response.headers['Content-Disposition'] = 'inline; filename=attendance_records.pdf'
     return response
-
-
-
-if __name__ == "__main__":
-    init_db()  # Initialize the database
-    app.run(debug=True, host='0.0.0.0', port=8000)
