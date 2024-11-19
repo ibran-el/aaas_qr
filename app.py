@@ -10,7 +10,7 @@ os.system("apt-get update && apt-get install -y wkhtmltopdf")
 init_db()
 
 app = Flask(__name__)
-app.config['SERVER_NAME'] = 'aaas-qr.onrender.com'
+app.config['SERVER_NAME'] = 'rolcall.deploy.tz'
 
 # Configure PDFKit to use wkhtmltopdf installed on Windows
 PDFKIT_CONFIG = pdfkit.configuration(wkhtmltopdf=r'/usr/bin/wkhtmltopdf')
