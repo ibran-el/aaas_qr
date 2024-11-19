@@ -197,4 +197,4 @@ def view_records_pdf():
 
 if __name__ == "__main__":
     init_db()  # Initialize the database
-    app.run(debug=True, host='0.0.0.0')
+    app.run(debug=True, host='0.0.0.0', port=8000)
