@@ -10,7 +10,7 @@ os.system("apt-get update && apt-get install -y wkhtmltopdf")
 init_db()
 
 app = Flask(__name__)
-app.config['SERVER_NAME'] = 'rolcall.deploy.tz'
+app.config['SERVER_NAME'] = 'rollcall.deploy.tz'
 
 # Configure PDFKit to use wkhtmltopdf installed on Windows
 PDFKIT_CONFIG = pdfkit.configuration(wkhtmltopdf=r'/usr/bin/wkhtmltopdf')
@@ -42,7 +42,27 @@ def register_student():
     finally:
         conn.close()
 
+@app.route('/registered')
+def view_records():
+    """View registered student details."""
+    conn = sqlite3.connect(db)
+    cursor = conn.cursor()
+    filter_date = ""
 
+  # Query
+    cursor.execute('''
+        SELECT  
+            Students.first_name, 
+            Students.last_name, 
+            Students.admission_no
+        FROM Students''')
+    
+    records = cursor.fetchall()
+    # print(records)
+    conn.close()
+    return render_template('reg.html', records=records)
+    
+    
 # Function to mark attendance in database
 @app.route('/mark_attendance/<path:admission_no>', methods = ['GET', 'POST'])
 def mark_attendance(admission_no):
@@ -53,7 +73,7 @@ def mark_attendance(admission_no):
 
     print(admission_no)
 
-    # """Mark attendance for a student in a specific course."""
+    # """ Mark attendance for a student in a specific course."""
     conn = sqlite3.connect(db)
     cursor = conn.cursor()
     
@@ -136,7 +156,7 @@ def view_records():
     
     records = cursor.fetchall()
     print(records)
-    # conn.close()
+    conn.close()
     
     # Render the records in the HTML template
     return render_template('records.html', records=records)
